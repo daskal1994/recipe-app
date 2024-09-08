@@ -82,63 +82,6 @@ const IngredientItem = ({ ingredient, onUpdate, onDelete }) => {
 
 const RecipeItem = ({ recipe }) => {
   const [isEditing, setIsEditing] = useState(false);
-  // const [editedIngredient, setEditedIngredient] = useState(ingredient);
-
-  // const handleUpdate = () => {
-  //   onUpdate(editedIngredient);
-  //   setIsEditing(false);
-  // };
-
-  // if (isEditing) {
-  //   return (
-  //     <div className="flex items-center space-x-2 mb-2">
-  //       <Input
-  //         value={editedIngredient.name}
-  //         onChange={(e) => setEditedIngredient({ ...editedIngredient, name: e.target.value })}
-  //         placeholder="Ingredient name"
-  //       />
-  //       <Input
-  //         value={editedIngredient.quantity}
-  //         onChange={(e) => setEditedIngredient({ ...editedIngredient, quantity: e.target.value })}
-  //         placeholder="Quantity"
-  //         type="number"
-  //         className="max-w-[100px]"
-  //       />
-  //       <Select
-  //         value={editedIngredient.measurementType}
-  //         onValueChange={(value) => setEditedIngredient({ ...editedIngredient, measurementType: value })}
-  //       >
-  //         <SelectTrigger className="max-w-[130px]">
-  //           <SelectValue placeholder="Pick Type" />
-  //         </SelectTrigger>
-  //         <SelectContent>
-  //           <SelectGroup>
-  //             <SelectLabel>Dry</SelectLabel>
-  //             <SelectItem value="cups-dry">Cups</SelectItem>
-  //             <SelectItem value="dashes">Dashes</SelectItem>
-  //             <SelectItem value="ounces-dry">Ounces</SelectItem>
-  //             <SelectItem value="pinches">Pinches</SelectItem>
-  //             <SelectItem value="tablespoons">Tablespoons</SelectItem>
-  //             <SelectItem value="teaspoons">Teaspoons</SelectItem>
-  //             <SelectItem value="pounds">Pounds</SelectItem>
-  //             <SelectItem value="each">Each</SelectItem>
-  //           </SelectGroup>
-  //           <SelectGroup>
-  //             <SelectLabel>Liquids</SelectLabel>
-  //             <SelectItem value="cups-liquid">Cups</SelectItem>
-  //             <SelectItem value="gallons">Gallons</SelectItem>
-  //             <SelectItem value="ounces-liquid">Ounces</SelectItem>
-  //             <SelectItem value="pints">Pints</SelectItem>
-  //             <SelectItem value="quarts">Quarts</SelectItem>
-  //           </SelectGroup>
-  //         </SelectContent>
-  //       </Select>
-  //       <Button onClick={handleUpdate}>Save</Button>
-  //       <Button variant="outline" onClick={() => setIsEditing(false)}>Cancel</Button>
-  //     </div>
-  //   );
-  // }
-  console.log('Recipe======================:', recipe);
 
   return (
     <div className="items-center justify-between mb-2 p-2 bg-gray-100 rounded">
@@ -148,14 +91,6 @@ const RecipeItem = ({ recipe }) => {
                 <div key={ingredient.id}>{ingredient.name} - {ingredient.quantity} {ingredient.measurementType}</div>
               ))}
       </div>
-      {/* <div>
-        <Button variant="ghost" size="icon" onClick={() => setIsEditing(true)}>
-          <Edit className="h-4 w-4" />
-        </Button>
-        <Button variant="ghost" size="icon" onClick={() => onDelete(ingredient)}>
-          <Trash2 className="h-4 w-4" />
-        </Button>
-      </div> */}
     </div>
   );
 };
@@ -169,7 +104,6 @@ const RecipeForm = () => {
   const addIngredient = () => {
     if (newIngredient.name && newIngredient.quantity && newIngredient.measurementType) {
       setIngredients([...ingredients, { ...newIngredient, id: Date.now() }]);
-      // Instead of resetting all fields, we'll just increment the id
       setNewIngredient(prev => ({ name: '', quantity: '', measurementType: '', id: prev.id + 1 }));
       const newIngs = [...ingredients, { ...newIngredient, id: Date.now() }]
       setRecipe({ ...recipe, ingredients: newIngs, id: Date.now() })
